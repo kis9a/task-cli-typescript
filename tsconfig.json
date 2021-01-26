@@ -2,6 +2,9 @@
   "compilerOptions": {
     "declaration": true,
     "importHelpers": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
     "outDir": "lib",
     "rootDir": "src",
