@@ -30,9 +30,10 @@ USAGE
 # Commands
 <!-- commands -->
 * [`task add [TASK]`](#task-add-task)
-* [`task clean [FILE]`](#task-clean-file)
+* [`task clean`](#task-clean)
 * [`task hello [FILE]`](#task-hello-file)
 * [`task help [COMMAND]`](#task-help-command)
+* [`task interactive`](#task-interactive)
 * [`task list`](#task-list)
 * [`task mark [TASK]`](#task-mark-task)
 
@@ -70,18 +71,16 @@ EXAMPLE
 
 _See code: [src/commands/add.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0.0/src/commands/add.ts)_
 
-## `task clean [FILE]`
+## `task clean`
 
-describe the command here
+remove completed tasks
 
 ```
 USAGE
-  $ task clean [FILE]
+  $ task clean
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help  show CLI help
 ```
 
 _See code: [src/commands/clean.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0.0/src/commands/clean.ts)_
@@ -123,6 +122,20 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.1/src/commands/help.ts)_
 
+## `task interactive`
+
+interactive mode
+
+```
+USAGE
+  $ task interactive
+
+OPTIONS
+  -h, --help  show CLI help
+```
+
+_See code: [src/commands/interactive.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0.0/src/commands/interactive.ts)_
+
 ## `task list`
 
 display tasks
@@ -147,7 +160,7 @@ _See code: [src/commands/list.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0
 
 ## `task mark [TASK]`
 
-describe the command here
+mark completed / remove completed
 
 ```
 USAGE
@@ -157,6 +170,7 @@ OPTIONS
   -c, --complete=complete  mark completed
   -d, --do=do              remove completed
   -h, --help               show CLI help
+  -t, --toggle=toggle      toggle completed
 
 EXAMPLE
 
@@ -178,6 +192,12 @@ EXAMPLE
      1   Task One    [completed]
      2   Task Two
      3   Task Three  [completed]
+     4   Task Four
+
+  $task mark -t 4 2
+     1   Task One
+     2   Task Two    [completed]
+     3   Task Three
      4   Task Four
 ```
 
