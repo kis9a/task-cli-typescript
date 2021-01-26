@@ -29,23 +29,42 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`task add [FILE]`](#task-add-file)
+* [`task add [TASK]`](#task-add-task)
 * [`task hello [FILE]`](#task-hello-file)
 * [`task help [COMMAND]`](#task-help-command)
-* [`task list [FILE]`](#task-list-file)
+* [`task list`](#task-list)
+* [`task mark [FILE]`](#task-mark-file)
 
-## `task add [FILE]`
+## `task add [TASK]`
 
-describe the command here
+add new task
 
 ```
 USAGE
-  $ task add [FILE]
+  $ task add [TASK]
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help               show CLI help
+  -m, --multiple=multiple  multiple arguments
+
+EXAMPLE
+  $ task add 'New Task'
+
+     1   Task One
+     2   Task Two
+     3   Task Three
+     4   Task Four  [completed]
+     5   New Task
+
+
+  $ task add -m 'New Task One' 'New Task Two'
+
+     1   Task One
+     2   Task Two
+     3   Task Three
+     4   Task Four  [completed]
+     5   New Task One
+     6   New Task Two
 ```
 
 _See code: [src/commands/add.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0.0/src/commands/add.ts)_
@@ -87,25 +106,41 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.1/src/commands/help.ts)_
 
-## `task list [FILE]`
+## `task list`
 
 display tasks
 
 ```
 USAGE
-  $ task list [FILE]
+  $ task list
+
+OPTIONS
+  -h, --help  show CLI help
+
+EXAMPLE
+  $ task list
+
+     1   Task One
+     2   Task Two
+     3   Task Three
+     4   Task Four  [completed]
+```
+
+_See code: [src/commands/list.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0.0/src/commands/list.ts)_
+
+## `task mark [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ task mark [FILE]
 
 OPTIONS
   -f, --force
   -h, --help       show CLI help
   -n, --name=name  name to print
-
-EXAMPLE
-  $ task list
-         1   task example 1 
-         2   task example 2
-         3   task example 3   (completed)
 ```
 
-_See code: [src/commands/list.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0.0/src/commands/list.ts)_
+_See code: [src/commands/mark.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0.0/src/commands/mark.ts)_
 <!-- commandsstop -->
