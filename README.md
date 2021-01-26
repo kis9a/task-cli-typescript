@@ -29,8 +29,26 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`task add [FILE]`](#task-add-file)
 * [`task hello [FILE]`](#task-hello-file)
 * [`task help [COMMAND]`](#task-help-command)
+* [`task list [FILE]`](#task-list-file)
+
+## `task add [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ task add [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/add.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0.0/src/commands/add.ts)_
 
 ## `task hello [FILE]`
 
@@ -68,4 +86,26 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.1/src/commands/help.ts)_
+
+## `task list [FILE]`
+
+display tasks
+
+```
+USAGE
+  $ task list [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+
+EXAMPLE
+  $ task list
+         1   task example 1 
+         2   task example 2
+         3   task example 3   (completed)
+```
+
+_See code: [src/commands/list.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0.0/src/commands/list.ts)_
 <!-- commandsstop -->
