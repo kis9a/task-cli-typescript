@@ -24,4 +24,18 @@ export class Task {
   getTaskById(id: number): TaskItem | undefined {
     return this.taskMap.get(id);
   }
+
+  markComplete(id: number, complete: boolean): void {
+    const item = this.getTaskById(id);
+    if (item) {
+      item.complete = complete;
+    }
+  }
+
+  toggleMarkComplete(id: number): void {
+    const item = this.getTaskById(id);
+    if (item) {
+      item.complete = !item.complete;
+    }
+  }
 }
