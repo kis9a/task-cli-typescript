@@ -1,16 +1,14 @@
-import { TaskItem } from './TaskItem'
+import { TaskItem } from "./TaskItem";
 
 export class Task {
-  constructor(
-    public taskItems: TaskItem[] = []
-  ) { 
+  constructor(public taskItems: TaskItem[] = []) {
     taskItems.forEach((item) => this.taskMap.set(item.id, item));
   }
   nextId: number = 1;
   taskMap = new Map<number, TaskItem>();
 
   getTaskItems(): TaskItem[] {
-    return [...this.taskMap.values()]
+    return [...this.taskMap.values()];
   }
 
   addTaskItem(task: string): number {
@@ -37,5 +35,13 @@ export class Task {
     if (item) {
       item.complete = !item.complete;
     }
+  }
+
+  removeComplete(): void {
+    this.taskMap.forEach((taskItem) => {
+      if (taskItem.complete) {
+        this.taskMap.delete(taskItem.id);
+      }
+    });
   }
 }
