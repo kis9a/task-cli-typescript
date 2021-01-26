@@ -30,10 +30,11 @@ USAGE
 # Commands
 <!-- commands -->
 * [`task add [TASK]`](#task-add-task)
+* [`task clean [FILE]`](#task-clean-file)
 * [`task hello [FILE]`](#task-hello-file)
 * [`task help [COMMAND]`](#task-help-command)
 * [`task list`](#task-list)
-* [`task mark [FILE]`](#task-mark-file)
+* [`task mark [TASK]`](#task-mark-task)
 
 ## `task add [TASK]`
 
@@ -68,6 +69,22 @@ EXAMPLE
 ```
 
 _See code: [src/commands/add.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0.0/src/commands/add.ts)_
+
+## `task clean [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ task clean [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/clean.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0.0/src/commands/clean.ts)_
 
 ## `task hello [FILE]`
 
@@ -128,18 +145,40 @@ EXAMPLE
 
 _See code: [src/commands/list.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0.0/src/commands/list.ts)_
 
-## `task mark [FILE]`
+## `task mark [TASK]`
 
 describe the command here
 
 ```
 USAGE
-  $ task mark [FILE]
+  $ task mark [TASK]
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -c, --complete=complete  mark completed
+  -d, --do=do              remove completed
+  -h, --help               show CLI help
+
+EXAMPLE
+
+  $task list
+     1   Task One
+     2   Task Two
+     3   Task Three
+     4   Task Four   [completed]
+
+  ---
+
+  $task mark 1
+     1   Task One    [completed]
+     2   Task Two
+     3   Task Three
+     4   Task Four   [completed]
+
+  $task mark -c 1 3 -n 4
+     1   Task One    [completed]
+     2   Task Two
+     3   Task Three  [completed]
+     4   Task Four
 ```
 
 _See code: [src/commands/mark.ts](https://github.com/kis9a/task-ts-cli/blob/v0.0.0/src/commands/mark.ts)_
