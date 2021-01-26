@@ -7,8 +7,14 @@ export class Task {
   nextId: number = 1;
   taskMap = new Map<number, TaskItem>();
 
-  getTaskItems(): TaskItem[] {
-    return [...this.taskMap.values()];
+  getTaskItems(includeComplete?: boolean): TaskItem[] {
+    if (includeComplete === undefined || null) {
+      return [...this.taskMap.values()]
+    } else {
+      console.log('false')
+      return [...this.taskMap.values()]
+     .filter((taskItem) => includeComplete || !taskItem.complete)
+    }
   }
 
   addTaskItem(task: string): number {
