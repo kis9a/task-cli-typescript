@@ -1,8 +1,8 @@
 import { Command, flags } from "@oclif/command";
-import { exampleTask } from "../models/exampleTask";
-import { Task } from "../models/Task";
+import { ExampleTask } from "../models/ExampleTask";
+import { JsonTask } from "../models/JsonTask";
 
-const task = new Task(exampleTask);
+const task = new JsonTask(ExampleTask);
 
 export default class Clean extends Command {
   static description = "remove completed tasks";
@@ -13,7 +13,7 @@ export default class Clean extends Command {
 
   async run() {
     this.parse(Clean);
-    task.removeComplete();
-    task.getTaskItems().forEach((item) => item.printDetails());
+    task.jsonRemoveComplete();
+    task.jsonTaskList();
   }
 }

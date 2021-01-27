@@ -1,8 +1,8 @@
 import { Command, flags } from "@oclif/command";
-import { exampleTask } from "../models/exampleTask";
-import { Task } from "../models/Task";
+import { ExampleTask } from "../models/ExampleTask";
+import { JsonTask } from "../models/JsonTask";
 
-const task = new Task(exampleTask);
+const task = new JsonTask(ExampleTask);
 
 export default class Add extends Command {
   static description = "add new task";
@@ -42,13 +42,13 @@ $ task add -m 'New Task One' 'New Task Two'
   async run() {
     const { args, flags } = this.parse(Add);
     if (args.task) {
-      task.addTaskItem(args.task);
+      task.jsonAddTaskItem(args.task);
     }
     if (flags.multiple) {
       flags.multiple.forEach((item) => {
-        task.addTaskItem(item);
-      })
+        task.jsonAddTaskItem(item);
+      });
     }
-    task.getTaskItems().forEach((item) => item.printDetails());
+    task.jsonTaskList();
   }
 }
