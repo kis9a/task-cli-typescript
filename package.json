@@ -3,7 +3,7 @@
   "description": "task management cli with typescript, oclif",
   "version": "0.0.0",
   "private": true,
-  "author": "kis9a @kis9a",
+  "author": "kis9a",
   "bin": {
     "task": "./bin/run"
   },
@@ -13,7 +13,9 @@
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
     "@types/inquirer": "^7.3.1",
+    "@types/lowdb": "^1.0.9",
     "inquirer": "^7.3.3",
+    "lowdb": "^1.0.0",
     "tslib": "^1"
   },
   "devDependencies": {
@@ -40,10 +42,6 @@
     "/lib",
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
-  ],
-  "homepage": "https://github.com/kis9a/task-ts-cli",
-  "keywords": [
-    "oclif"
   ],
   "license": "MIT",
   "main": "lib/index.js",
