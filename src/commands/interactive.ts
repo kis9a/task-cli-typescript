@@ -1,21 +1,17 @@
-import { Command, flags } from "@oclif/command";
-import { exampleTask } from "../models/exampleTask";
-import { Task } from "../models/Task";
 import inquirer from "inquirer";
+import { Command, flags } from "@oclif/command";
+import { ExampleTask } from "../models/ExampleTask";
+import { JsonTask } from "../models/JsonTask";
 
-const task = new Task(exampleTask);
+const task = new JsonTask(ExampleTask);
 let showCompleted: boolean = true;
 
-function displayTaskList(): void {
-  task.getTaskItems(showCompleted).forEach((item) => item.printDetails());
-}
-
 enum Commands {
-  Add = "Add New Task",
-  Complete = "Mark Complete Task",
-  Toggle = "Show/Hide Completed",
-  Purge = "Remove Complete Tasks",
-  Quit = "Quit",
+  Add = "add new task",
+  Complete = "mark completed",
+  Toggle = "toggle completed",
+  Clean = "remove completed",
+  Quit = "quit interactive mode",
 }
 
 async function promptAdd(): Promise<void> {
@@ -26,7 +22,7 @@ async function promptAdd(): Promise<void> {
     message: "Enter task",
   });
   if (answers["add"] !== "") {
-    task.addTaskItem(answers["add"]);
+    task.jsonAddTaskItem(answers["add"]);
   }
   promptUser();
 }
@@ -37,7 +33,7 @@ async function promptMarkComplete(): Promise<void> {
     type: "checkbox",
     name: "complete",
     message: "Mark task complete",
-    choices: task.getTaskItems(showCompleted).map((taskItem) => ({
+    choices: task.jsonTaskList(showCompleted).map((taskItem) => ({
       name: taskItem.task,
       value: taskItem.id,
       checked: taskItem.complete,
@@ -45,9 +41,9 @@ async function promptMarkComplete(): Promise<void> {
   });
   let completedTasks = answers["complete"] as number[];
   task
-    .getTaskItems(true)
+    .jsonTaskList(true)
     .forEach((taskItem) =>
-      task.markComplete(
+      task.jsonMarkdComplete(
         taskItem.id,
         completedTasks.find((id) => id === taskItem.id) != undefined
       )
@@ -57,7 +53,7 @@ async function promptMarkComplete(): Promise<void> {
 
 function promptPurgeCompleted(): void {
   console.clear();
-  task.removeComplete();
+  task.jsonRemoveComplete();
   promptUser();
 }
 
@@ -69,7 +65,7 @@ function promptToggleShowCompleted(): void {
 
 async function promptUser() {
   console.clear();
-  displayTaskList();
+  task.jsonTaskList();
 
   const answers = await inquirer.prompt({
     type: "list",
@@ -88,7 +84,7 @@ async function promptUser() {
     case Commands.Toggle:
       promptToggleShowCompleted();
       break;
-    case Commands.Purge:
+    case Commands.Clean:
       promptPurgeCompleted();
       break;
     case Commands.Quit:

@@ -1,11 +1,11 @@
 import { Command, flags } from "@oclif/command";
-import { exampleTask } from "../models/exampleTask";
-import { Task } from "../models/Task";
+import { ExampleTask } from "../models/ExampleTask";
+import { JsonTask } from "../models/JsonTask";
 
-const task = new Task(exampleTask);
+const task = new JsonTask(ExampleTask);
 
 export default class Mark extends Command {
-  static description = "mark completed / remove completed";
+  static description = "mark completed";
 
   static examples = [
     `
@@ -56,21 +56,21 @@ $task mark -t 4 2
     }),
   };
 
-  static args = [{ name: "task" }];
+  static args = [{ name: "taskId" }];
 
   async run() {
     const { args, flags } = this.parse(Mark);
-    const taskId: number = Number(args.task);
+    const taskId: number = Number(args.taskId);
 
     if (typeof taskId === "number") {
-      task.markComplete(taskId, true);
+      task.jsonMarkdComplete(taskId, true);
     }
 
     if (flags.complete) {
       flags.complete.forEach((item) => {
         let taskId: number = Number(item);
         if (typeof taskId === "number") {
-          task.markComplete(taskId, true);
+          task.jsonMarkdComplete(taskId, true);
         }
       });
     }
@@ -79,7 +79,7 @@ $task mark -t 4 2
       flags.do.forEach((item) => {
         let taskId: number = Number(item);
         if (typeof taskId === "number") {
-          task.markComplete(taskId, false);
+          task.jsonMarkdComplete(taskId, false);
         }
       });
     }
@@ -88,11 +88,11 @@ $task mark -t 4 2
       flags.toggle.forEach((item) => {
         let taskId: number = Number(item);
         if (typeof taskId === "number") {
-          task.toggleMarkComplete(taskId);
+          task.jsonToggleMarkComplete(taskId);
         }
       });
     }
 
-    task.getTaskItems().forEach((item) => item.printDetails());
+    task.jsonTaskList();
   }
 }
