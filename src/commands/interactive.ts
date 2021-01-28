@@ -1,18 +1,17 @@
 import inquirer from "inquirer";
 import { Command, flags } from "@oclif/command";
-import { ExampleTask } from "../models/ExampleTask";
 import { JsonTask } from "../models/JsonTask";
 
-const task = new JsonTask(ExampleTask);
+const task = new JsonTask();
 let showCompleted: boolean = true;
 
-enum Commands {
-  Add = "add new task",
-  Complete = "mark completed",
-  Toggle = "toggle completed",
-  Clean = "remove completed",
-  Quit = "quit interactive mode",
-}
+const Commands = {
+  Add: "add new task",
+  Complete: "select completed",
+  Toggle: "toggle show completed",
+  Clean: "remove completed",
+  Quit: "quit interactive mode",
+} as const
 
 async function promptAdd(): Promise<void> {
   console.clear();
@@ -41,7 +40,7 @@ async function promptMarkComplete(): Promise<void> {
   });
   let completedTasks = answers["complete"] as number[];
   task
-    .jsonTaskList(true)
+    .jsonTaskList(showCompleted)
     .forEach((taskItem) =>
       task.jsonMarkdComplete(
         taskItem.id,
@@ -65,7 +64,7 @@ function promptToggleShowCompleted(): void {
 
 async function promptUser() {
   console.clear();
-  task.jsonTaskList();
+  task.jsonTaskList(showCompleted);
 
   const answers = await inquirer.prompt({
     type: "list",
@@ -94,6 +93,12 @@ async function promptUser() {
 
 export default class Interactive extends Command {
   static description = "interactive mode";
+
+  static examples = [
+    `
+$ task interactive
+`,
+  ];
 
   static flags = {
     help: flags.help({ char: "h" }),

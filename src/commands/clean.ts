@@ -1,8 +1,7 @@
 import { Command, flags } from "@oclif/command";
-import { ExampleTask } from "../models/ExampleTask";
 import { JsonTask } from "../models/JsonTask";
 
-const task = new JsonTask(ExampleTask);
+const task = new JsonTask();
 
 export default class Clean extends Command {
   static description = "remove completed tasks";

@@ -1,30 +1,15 @@
 import { Command, flags } from "@oclif/command";
-import { ExampleTask } from "../models/ExampleTask";
 import { JsonTask } from "../models/JsonTask";
 
-const task = new JsonTask(ExampleTask);
+const task = new JsonTask();
 
 export default class Add extends Command {
   static description = "add new task";
 
   static examples = [
-    `$ task add 'New Task'
-
-  1   Task One
-  2   Task Two
-  3   Task Three
-  4   Task Four  [completed]
-  5   New Task
-
-
+    `
+$ task add 'New Task'
 $ task add -m 'New Task One' 'New Task Two'
-
-  1   Task One
-  2   Task Two
-  3   Task Three
-  4   Task Four  [completed]
-  5   New Task One
-  6   New Task Two
 `,
   ];
 
@@ -37,7 +22,7 @@ $ task add -m 'New Task One' 'New Task Two'
     }),
   };
 
-  static args = [{ name: "task" }];
+  static args = [{ name: "task", required: true }];
 
   async run() {
     const { args, flags } = this.parse(Add);
