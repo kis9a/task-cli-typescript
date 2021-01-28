@@ -1,28 +1,32 @@
 import { Command, flags } from "@oclif/command";
-import { ExampleTask } from "../models/ExampleTask";
 import { JsonTask } from "../models/JsonTask";
 
-const task = new JsonTask(ExampleTask);
+const task = new JsonTask();
 
 export default class List extends Command {
   static description = "display tasks";
 
   static examples = [
-    `$ task list
-
-  1   Task One
-  2   Task Two
-  3   Task Three
-  4   Task Four  [completed]
+  `
+$ task list
 `,
   ];
 
   static flags = {
     help: flags.help({ char: "h" }),
+    todo: flags.boolean({
+      char: "d",
+      description: "display exclude completed tasks",
+    }),
   };
 
   async run() {
+    const { flags } = this.parse(List);
+    if(flags.todo) {
+      task.jsonTaskList(false);
+    } else {
+      task.jsonTaskList();
+    }
     this.parse(List);
-    task.jsonTaskList();
   }
 }

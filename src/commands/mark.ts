@@ -1,39 +1,16 @@
 import { Command, flags } from "@oclif/command";
-import { ExampleTask } from "../models/ExampleTask";
 import { JsonTask } from "../models/JsonTask";
 
-const task = new JsonTask(ExampleTask);
+const task = new JsonTask();
 
 export default class Mark extends Command {
   static description = "mark completed";
 
   static examples = [
     `
-$task list
-  1   Task One
-  2   Task Two
-  3   Task Three
-  4   Task Four   [completed]
-
----
-
 $task mark 1
-  1   Task One    [completed]
-  2   Task Two
-  3   Task Three
-  4   Task Four   [completed]
-
 $task mark -c 1 3 -n 4
-  1   Task One    [completed]
-  2   Task Two
-  3   Task Three  [completed]
-  4   Task Four
-
 $task mark -t 4 2
-  1   Task One
-  2   Task Two    [completed]
-  3   Task Three
-  4   Task Four
 `,
   ];
 
@@ -56,7 +33,7 @@ $task mark -t 4 2
     }),
   };
 
-  static args = [{ name: "taskId" }];
+  static args = [{ name: "taskId", required: true }];
 
   async run() {
     const { args, flags } = this.parse(Mark);
