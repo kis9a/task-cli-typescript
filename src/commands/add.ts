@@ -1,8 +1,6 @@
 import { Command, flags } from "@oclif/command";
 import { JsonTask } from "../models/JsonTask";
 
-const task = new JsonTask();
-
 export default class Add extends Command {
   static description = "add new task";
 
@@ -25,6 +23,7 @@ $ tstask add -m 'New Task One' 'New Task Two'
   static args = [{ name: "task", required: true }];
 
   async run() {
+    const task = new JsonTask();
     const { args, flags } = this.parse(Add);
     if (args.task) {
       task.jsonAddTaskItem(args.task);

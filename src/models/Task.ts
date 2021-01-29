@@ -1,20 +1,44 @@
-import { TaskItem } from "./TaskItem";
+import chalk from "chalk";
+
+export type TypeTaskItem = {
+  id: number;
+  task: string;
+  complete: boolean;
+}
 
 type TaskCounts = {
   total: number;
   incomplete: number;
+};
+
+export class TaskItem {
+  constructor(
+    public num: TypeTaskItem["id"] = 1,
+    public id: number,
+    public task: string,
+    public complete: boolean = false
+  ) {}
+
+  printDetails(): void {
+    console.log(
+      `${this.id}\t\
+        ${chalk.green(`${this.task}`)}\t\
+        ${this.complete ? chalk.yellow("\t[completed]") : ""}`
+    );
+  }
 }
 
 export class Task {
   constructor(public taskItems: TaskItem[] = []) {
     taskItems.forEach((item) => this.taskMap.set(item.id, item));
   }
-  nextId: number = 1;
+  private nextId: number = 1;
   taskMap = new Map<number, TaskItem>();
 
   getTaskItems(includeComplete: boolean = true): TaskItem[] {
     return [...this.taskMap.values()].filter(
-      (taskItem) => includeComplete || !taskItem.complete)
+      (taskItem) => includeComplete || !taskItem.complete
+    );
   }
 
   addTaskItem(task: string): number {
@@ -54,7 +78,7 @@ export class Task {
   getTaskComputed(): TaskCounts {
     return {
       total: this.taskMap.size,
-      incomplete: this.getTaskItems(false).length
-    }
+      incomplete: this.getTaskItems(false).length,
+    };
   }
 }
