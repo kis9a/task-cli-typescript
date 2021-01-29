@@ -96,7 +96,7 @@ export default class Interactive extends Command {
 
   static examples = [
     `
-$ task interactive
+$ tstask interactive
 `,
   ];
 

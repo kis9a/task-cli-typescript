@@ -1,24 +1,19 @@
-task
-====
+# tstask
 
-<!-- toc -->
-* [Installation](#usage)
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
-
-# Installation
-git clone https://github.com/kis9a/task-cli-typescript  
+### Installation
+```
+git clone https://github.com/kis9a/tstask  
 yarn && yarn link
+```
 
-# Usage
-
-## Commands
+### COMMANDS
 <!-- commands -->
-* [`task list`](#task-list)
-* [`task add [TASK]`](#task-add-task)
-* [`task mark [TASKID]`](#task-mark-task)
-* [`task clean`](#task-clean)
-* [`task interactive`](#task-interactive)
-* [`task help [COMMAND]`](#task-help-command)
-
+*  [`tstask add [TASK]`](#add):   add new task
+*  [`tstask autocomplete`](#autocomplete):  display autocomplete installation instructions
+*  [`tstask clean [TASKID]`](#clean):   remove completed tasks
+*  [`tstask commands`](#commnads):   list all the commands
+*  [`tstask help [COMMAND]`](#help):   display help for tstask
+*  [`tstask interactive`](#interactive):   interactive mode
+*  [`tstask list`](#list):   display tasks
+*  [`tstask mark`](#mark):   mark completed
+*  [`tstask update`](#update):   update the tstask CLI

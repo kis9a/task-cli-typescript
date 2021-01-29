@@ -8,8 +8,8 @@ export default class Add extends Command {
 
   static examples = [
     `
-$ task add 'New Task'
-$ task add -m 'New Task One' 'New Task Two'
+$ tstask add 'New Task'
+$ tstask add -m 'New Task One' 'New Task Two'
 `,
   ];
 

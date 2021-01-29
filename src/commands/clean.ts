@@ -6,6 +6,12 @@ const task = new JsonTask();
 export default class Clean extends Command {
   static description = "remove completed tasks";
 
+  static examples = [
+  `
+$ tstask clean
+`,
+  ];
+
   static flags = {
     help: flags.help({ char: "h" }),
   };
