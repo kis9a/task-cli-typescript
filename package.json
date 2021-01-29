@@ -1,13 +1,13 @@
 {
-  "name": "task-ts-cli",
-  "description": "task management cli with typescript, oclif",
+  "name": "tstask",
+  "description": "task management cli with typescript and oclif framework",
   "version": "0.0.0",
   "private": true,
-  "author": "kis9a",
+  "author": "kis9a ",
   "bin": {
-    "task": "./bin/run"
+    "tstask": "./bin/run"
   },
-  "bugs": "https://github.com/kis9a/task-ts-cli/issues",
+  "bugs": "https://github.com/kis9a/tstask/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -48,12 +48,12 @@
   "main": "lib/index.js",
   "oclif": {
     "commands": "./lib/commands",
-    "bin": "task",
+    "bin": "tstask",
     "plugins": [
       "@oclif/plugin-help"
     ]
   },
-  "repository": "kis9a/task-ts-cli",
+  "repository": "kis9a/tstask",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",

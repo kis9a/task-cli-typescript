@@ -8,7 +8,7 @@ export default class List extends Command {
 
   static examples = [
   `
-$ task list
+$ tstask list
 `,
   ];
 

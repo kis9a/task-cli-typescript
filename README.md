@@ -1,4 +1,4 @@
-task
+tstask
 ====
 
 <!-- toc -->
@@ -8,17 +8,17 @@ task
 <!-- tocstop -->
 
 # Installation
-git clone https://github.com/kis9a/task-cli-typescript  
+git clone https://github.com/kis9a/tstask  
 yarn && yarn link
 
 # Usage
 
 ## Commands
 <!-- commands -->
-* [`task list`](#task-list)
-* [`task add [TASK]`](#task-add-task)
-* [`task mark [TASKID]`](#task-mark-task)
-* [`task clean`](#task-clean)
-* [`task interactive`](#task-interactive)
-* [`task help [COMMAND]`](#task-help-command)
+* [`tstask list`](#task-list)
+* [`tstask add [TASK]`](#task-add-task)
+* [`tstask mark [TASKID]`](#task-mark-task)
+* [`tstask clean`](#task-clean)
+* [`tstask interactive`](#task-interactive)
+* [`tstask help [COMMAND]`](#task-help-command)
 

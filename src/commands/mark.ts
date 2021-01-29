@@ -8,9 +8,9 @@ export default class Mark extends Command {
 
   static examples = [
     `
-$task mark 1
-$task mark -c 1 3 -n 4
-$task mark -t 4 2
+$tstask mark 1
+$tstask mark -c 1 3 -n 4
+$tstask mark -t 4 2
 `,
   ];
 
