@@ -1,5 +1,10 @@
 import { TaskItem } from "./TaskItem";
 
+type TaskCounts = {
+  total: number;
+  incomplete: number;
+}
+
 export class Task {
   constructor(public taskItems: TaskItem[] = []) {
     taskItems.forEach((item) => this.taskMap.set(item.id, item));
@@ -44,5 +49,12 @@ export class Task {
         this.taskMap.delete(taskItem.id);
       }
     });
+  }
+
+  getTaskComputed(): TaskCounts {
+    return {
+      total: this.taskMap.size,
+      incomplete: this.getTaskItems(false).length
+    }
   }
 }

@@ -51,13 +51,25 @@ export class JsonTask extends Task {
     this.storeTasks();
   }
 
-  jsonTaskList(includeComplete: boolean = true): TaskItem[] {
+  jsonTaskList(
+    includeComplete: boolean = true,
+    showComputed: boolean = true
+  ): TaskItem[] {
+    if (showComputed) {
+      this.printTaskComputed();
+    }
     const taskItems = super.getTaskItems(includeComplete);
     taskItems.forEach((item) => item.printDetails());
     return taskItems;
   }
 
-  storeTasks() {
+  printTaskComputed(): void {
+    const total = super.getTaskComputed().total;
+    const incomplete = super.getTaskComputed().incomplete;
+    console.log(`${total} tasks, ${incomplete} tasks todo.\n`);
+  }
+
+  storeTasks(): void {
     this.database.set("tasks", [...this.taskMap.values()]).write();
   }
 }
