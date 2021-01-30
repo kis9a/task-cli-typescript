@@ -9,7 +9,7 @@ export default class Clean extends Command {
   static examples = [
     `
 $ tstask clean
-$ tstask all
+$ tstask clean all
 `,
   ];
 
@@ -22,7 +22,7 @@ $ tstask all
   async run() {
     const { args } = this.parse(Clean);
 
-    if(args.option === 'all') {
+    if (args.option === "all") {
       task.jsonRemoveTaskItems(false);
     } else {
       task.jsonRemoveTaskItems();

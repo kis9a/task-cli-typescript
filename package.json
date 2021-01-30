@@ -1,6 +1,6 @@
 {
   "name": "tstask",
-  "description": "task management cli with typescript and oclif framework",
+  "description": "task management cli",
   "version": "0.0.0",
   "private": true,
   "author": "kis9a ",

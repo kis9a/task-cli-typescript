@@ -12,7 +12,7 @@ const Commands = {
   Toggle: "toggle show completed",
   Clean: "remove completed",
   Quit: "quit interactive mode",
-} as const
+} as const;
 
 async function promptAdd(): Promise<void> {
   console.clear();
@@ -53,7 +53,7 @@ async function promptMarkComplete(): Promise<void> {
 
 function promptPurgeCompleted(): void {
   console.clear();
-  task.jsonRemoveComplete();
+  task.jsonRemoveTaskItems();
   promptUser();
 }
 

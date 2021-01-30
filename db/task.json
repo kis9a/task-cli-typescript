@@ -8,12 +8,12 @@
     {
       "id": 2,
       "task": "application",
-      "complete": true
+      "complete": false
     },
     {
       "id": 3,
       "task": "tow",
-      "complete": true
+      "complete": false
     },
     {
       "id": 4,
