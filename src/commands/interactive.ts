@@ -1,8 +1,9 @@
 import inquirer from "inquirer";
 import { Command, flags } from "@oclif/command";
-import { JsonTask } from "../models/JsonTask";
+import { DB } from "../db";
 
-const task = new JsonTask();
+const task = new DB();
+
 let showCompleted: boolean = true;
 
 const Commands = {

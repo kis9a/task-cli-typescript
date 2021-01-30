@@ -1,6 +1,5 @@
 import lowdb from "lowdb";
-import { Task } from "./Task";
-import { TaskItem } from "./TaskItem";
+import { Task, TaskItem } from "./models/Task";
 import FileSync from "lowdb/adapters/FileSync";
 
 type schemaType = {
@@ -11,12 +10,12 @@ type schemaType = {
   }[];
 };
 
-export class JsonTask extends Task {
+export class DB extends Task {
   private database: lowdb.LowdbSync<schemaType>;
 
   constructor(taskItems: TaskItem[] = []) {
     super([]);
-    this.database = lowdb(new FileSync("task.json"));
+    this.database = lowdb(new FileSync("db/task.json"));
     if (this.database.has("tasks").value()) {
       let dbItems = this.database.get("tasks").value();
       dbItems.forEach((taskItem) => {

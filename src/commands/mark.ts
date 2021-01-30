@@ -1,7 +1,7 @@
 import { Command, flags } from "@oclif/command";
-import { JsonTask } from "../models/JsonTask";
+import { DB } from "../db";
 
-const task = new JsonTask();
+const task = new DB();
 
 export default class Mark extends Command {
   static description = "mark completed";
