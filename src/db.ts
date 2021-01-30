@@ -45,8 +45,8 @@ export class DB extends Task {
     this.storeTasks();
   }
 
-  jsonRemoveComplete(): void {
-    super.removeComplete();
+  jsonRemoveTaskItems(onlyCompleted: boolean = true): void {
+    super.removeTaskItems(onlyCompleted);
     this.storeTasks();
   }
 

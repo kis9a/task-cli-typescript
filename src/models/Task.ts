@@ -14,9 +14,8 @@ export class TaskItem {
 
   printDetails(): void {
     console.log(
-      `${this.id}\t\
-        ${chalk.green(`${this.task}`)}\t\
-        ${this.complete ? chalk.yellow("\t[completed]") : ""}`
+      `${chalk.red(`${this.id}`)}\t ${this.complete ? "✅" : ""}\t\
+        ${chalk.green(`${this.task}`)}`
     );
   }
 }
@@ -28,10 +27,22 @@ export class Task {
   nextId: number = 1;
   taskMap = new Map<number, TaskItem>();
 
-  getTaskItems(includeComplete: boolean = true): TaskItem[] {
+  getTaskItems(includeCompleted: boolean = true): TaskItem[] {
     return [...this.taskMap.values()].filter(
-      (taskItem) => includeComplete || !taskItem.complete
+      (taskItem) => includeCompleted || !taskItem.complete
     );
+  }
+
+  removeTaskItems(onlyCompleted: boolean = true): void {
+    if (onlyCompleted) {
+      this.taskMap.forEach((taskItem) => {
+        if (taskItem.complete) {
+          this.taskMap.delete(taskItem.id);
+        }
+      });
+    } else {
+      this.taskMap.clear();
+    }
   }
 
   addTaskItem(task: string): number {
@@ -58,14 +69,6 @@ export class Task {
     if (item) {
       item.complete = !item.complete;
     }
-  }
-
-  removeComplete(): void {
-    this.taskMap.forEach((taskItem) => {
-      if (taskItem.complete) {
-        this.taskMap.delete(taskItem.id);
-      }
-    });
   }
 
   getTaskComputed(): TaskCounts {
