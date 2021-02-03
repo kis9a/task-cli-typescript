@@ -25,8 +25,6 @@ $ tstask add -m 'New Task One' 'New Task Two'
   static args = [{name: 'task', required: true}]
 
   async run() {
-    this.log('hello, world!')
-
     const {args, flags} = this.parse(Add)
     if (args.task) {
       task.jsonAddTaskItem(args.task)
