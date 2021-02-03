@@ -1,9 +1,9 @@
-import chalk from "chalk";
+import chalk from 'chalk'
 
 type TaskCounts = {
   total: number;
   incomplete: number;
-};
+}
 
 export class TaskItem {
   public constructor(
@@ -14,60 +14,62 @@ export class TaskItem {
 
   printDetails(): void {
     console.log(
-      `${chalk.red(`${this.id}`)}\t ${this.complete ? "✅" : ""}\t\
+      `${chalk.red(`${this.id}`)}\t ${this.complete ? '✅' : ''}\t\
         ${chalk.green(`${this.task}`)}`
-    );
+    )
   }
 }
 
 export class Task {
   constructor(public taskItems: TaskItem[] = []) {
-    taskItems.forEach((item) => this.taskMap.set(item.id, item));
+    taskItems.forEach(item => this.taskMap.set(item.id, item))
   }
-  nextId: number = 1;
-  taskMap = new Map<number, TaskItem>();
 
-  getTaskItems(includeCompleted: boolean = true): TaskItem[] {
+  nextId = 1
+
+  taskMap = new Map<number, TaskItem>()
+
+  getTaskItems(includeCompleted = true): TaskItem[] {
     return [...this.taskMap.values()].filter(
-      (taskItem) => includeCompleted || !taskItem.complete
-    );
+      taskItem => includeCompleted || !taskItem.complete
+    )
   }
 
-  removeTaskItems(onlyCompleted: boolean = true): void {
+  removeTaskItems(onlyCompleted = true): void {
     if (onlyCompleted) {
-      this.taskMap.forEach((taskItem) => {
+      this.taskMap.forEach(taskItem => {
         if (taskItem.complete) {
-          this.taskMap.delete(taskItem.id);
+          this.taskMap.delete(taskItem.id)
         }
-      });
+      })
     } else {
-      this.taskMap.clear();
+      this.taskMap.clear()
     }
   }
 
   addTaskItem(task: string): number {
     while (this.getTaskById(this.nextId)) {
-      this.nextId++;
+      this.nextId++
     }
-    this.taskMap.set(this.nextId, new TaskItem(this.nextId, task));
-    return this.nextId;
+    this.taskMap.set(this.nextId, new TaskItem(this.nextId, task))
+    return this.nextId
   }
 
   getTaskById(id: number): TaskItem | undefined {
-    return this.taskMap.get(id);
+    return this.taskMap.get(id)
   }
 
   markComplete(id: number, complete: boolean): void {
-    const item = this.getTaskById(id);
+    const item = this.getTaskById(id)
     if (item) {
-      item.complete = complete;
+      item.complete = complete
     }
   }
 
   toggleMarkComplete(id: number): void {
-    const item = this.getTaskById(id);
+    const item = this.getTaskById(id)
     if (item) {
-      item.complete = !item.complete;
+      item.complete = !item.complete
     }
   }
 
@@ -75,6 +77,6 @@ export class Task {
     return {
       total: this.taskMap.size,
       incomplete: this.getTaskItems(false).length,
-    };
+    }
   }
 }

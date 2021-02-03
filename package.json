@@ -34,7 +34,7 @@
     "typescript": "^3.3"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=8.3.0"
   },
   "files": [
     "/bin",
@@ -58,6 +58,8 @@
   "repository": "kis9a/tstask",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "format": "eslint . --ext .ts --config .eslintrc --fix",
     "version": "oclif-dev readme && git add README.md"
   },
   "types": "lib/index.d.ts"

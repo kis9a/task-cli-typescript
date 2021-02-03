@@ -1,8 +1,11 @@
 {
   "extends": [
-  "oclif",
-  "oclif-typescript"
+    "oclif",
+    "oclif-typescript"
   ],
-  rules: {
-  },
+  "rules": {
+    "no-console": "off",
+    "no-useless-constructor": "off",
+    "no-use-before-define": "off",
+  }
 }
